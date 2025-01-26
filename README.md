@@ -12,7 +12,7 @@ A canary, in the context of this project, is a URL set up so that when someone r
 - [ ] <b>Log file for alerts (could integrate with SIEM)</b>
 - [ ] <b>Twilio/email integration?</b>
 - [ ] <b>More server response types</b>
-More might appear...
+<p>More things might appear...</p>
 
 ## Installation
 You have 2 options: you can either download a precompiled version of both the client and the server from the releases tab. Downloading a precompiled version is recommended.
