@@ -9,7 +9,7 @@ A canary, in the context of this project, is a URL set up so that when someone r
 
 ## Roadmap
 - [x] <b>Basic server & client</b>
-- [ ] <b>Log file for alerts (could integrate with SIEM)</b>
+- [x] <b>Log file for alerts (could integrate with SIEM)</b>
 - [ ] <b>Twilio/email integration?</b>
 - [ ] <b>More server response types</b>
 <p>More things might appear...</p>
@@ -50,6 +50,8 @@ basepath=<string> # HTTP base path for the api. Default: /api/
 publickey=<string> # Path to SSL public key. SSL is disabled by default. Default: ""
 
 privatekey=<string> # Path to SSL private key. SSL is disabled by default. Default: ""
+
+log=<string> # Path to log file. Default: "" (disabled)
 ```
 
 ### Command line parameters
@@ -66,6 +68,8 @@ privatekey=<string> # Path to SSL private key. SSL is disabled by default. Defau
       private key for the rest api
 -listener string
       listener (127.0.0.1:8080)
+-log string
+      log file (disabled by default)
 -no-req
       disables registration
 ```

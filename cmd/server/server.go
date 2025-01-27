@@ -28,6 +28,9 @@ func main() {
 		log.Fatalf("encountered error while parsing config: %s", err.Error())
 	}
 
+	// Init log file if enabled
+	server.InitLog(opts)
+
 	// Init db
 	commander, err := commands.New(&database.Opts{
 		Location: opts.DatabaseLocation,

@@ -19,6 +19,7 @@ var (
 		"noregistration":   false,
 		"publickey":        "",
 		"privatekey":       "",
+		"log":              "",
 	}
 
 	arguments = make(map[string]any)
@@ -33,6 +34,7 @@ func GetOptions() (*server.Options, error) {
 		BasePath:         defaultValues["basepath"].(string),
 		PublicKey:        defaultValues["publickey"].(string),
 		PrivateKey:       defaultValues["privatekey"].(string),
+		Log:              defaultValues["log"].(string),
 	}
 
 	info, err := os.Stat("litecanary.conf")
@@ -54,6 +56,7 @@ func GetOptions() (*server.Options, error) {
 	arguments["BasePathP"] = flag.String("base", "", "base path for the api (/api/)")
 	arguments["PublicKeyP"] = flag.String("cert", "", "public key for the rest api")
 	arguments["PrivateKeyP"] = flag.String("key", "", "private key for the rest api")
+	arguments["LogP"] = flag.String("log", "", "log file (disabled by default)")
 	flag.Parse()
 	for key, val := range arguments {
 		valueType := fmt.Sprintf("%T", val)

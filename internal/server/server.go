@@ -15,6 +15,7 @@ type Options struct {
 	NoRegistration   bool   `mapstructure:"noregistration"`
 	PublicKey        string `mapstructure:"publickey"`
 	PrivateKey       string `mapstructure:"privatekey"`
+	Log              string `mapstructure:"log"`
 	Commander        *commands.Commander
 }
 

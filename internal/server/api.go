@@ -206,6 +206,10 @@ func TriggerCanary(ctx *gin.Context) {
 		generalError(ctx, errors.New("invalid type"), http.StatusBadRequest)
 		return
 	}
+	if LogFileEnabled {
+		log.Printf("CANARY TRIGGERED (%s): id:%s| ip:%s| user-agent:%s| keyboard:%s|",
+			time.Now(), canaryId, ctx.RemoteIP(), ctx.Request.UserAgent(), ctx.Request.Header.Get("Accept-Language"))
+	}
 
 	switch canary.Type {
 	case "redirect":
