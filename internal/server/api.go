@@ -3,6 +3,7 @@ package server
 import (
 	"LiteCanary/internal/models"
 	"encoding/base64"
+	"encoding/json"
 	"errors"
 	"log"
 	"net/http"
@@ -192,13 +193,15 @@ func TriggerCanary(ctx *gin.Context) {
 		return
 	}
 
-	err = localOpts.Opts.Commander.TriggerCanary(&models.TriggerEvent{
+	triggerEvent := &models.TriggerEvent{
 		Canaryid:         canaryId,
 		Ip:               ctx.RemoteIP(),
 		Useragent:        ctx.Request.UserAgent(),
 		Timestamp:        time.Now(),
 		Keyboardlanguage: ctx.Request.Header.Get("Accept-Language"),
-	})
+	}
+
+	err = localOpts.Opts.Commander.TriggerCanary(triggerEvent)
 	if generalError(ctx, err, http.StatusBadRequest) {
 		return
 	}
@@ -206,9 +209,10 @@ func TriggerCanary(ctx *gin.Context) {
 		generalError(ctx, errors.New("invalid type"), http.StatusBadRequest)
 		return
 	}
+
 	if LogFileEnabled {
-		log.Printf("CANARY TRIGGERED (%s): id:%s| ip:%s| user-agent:%s| keyboard:%s|",
-			time.Now(), canaryId, ctx.RemoteIP(), ctx.Request.UserAgent(), ctx.Request.Header.Get("Accept-Language"))
+		jsonLog, _ := json.Marshal(triggerEvent)
+		log.Println(string(jsonLog))
 	}
 
 	switch canary.Type {
