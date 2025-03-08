@@ -19,7 +19,7 @@ You have 2 options: you can either download a precompiled version of both the cl
 
 ### Compiling from source:
 ```bash
-git clone https://github.com/R00tendo/LiteCanary # Clone the repo
+git clone https://github.com/SpoofIMEI/LiteCanary # Clone the repo
 cd LiteCanary # Go into the directory
 go build ./cmd/server/server.go # Compile the server (make sure Go is installed)
 go build ./cmd/cli/cli.go # Compile the cli
